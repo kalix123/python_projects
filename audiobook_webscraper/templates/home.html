@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Flask app</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('AudioBooks') }}">AudioBooks</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+
+
+  </body>
+</html>
