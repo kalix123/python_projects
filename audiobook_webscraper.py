@@ -2,11 +2,6 @@ import sys
 import re
 import requests
 from bs4 import BeautifulSoup
-
-
-chapter = int(input("CHAPTER: ")) - 1
-
-
 page = requests.get('https://azkabanaudiobook.com/deathly-hallows-jim-dale-book-7/#more-173')
 html = page.content
 soup = BeautifulSoup(html, 'html.parser')
@@ -35,9 +30,4 @@ for link in links:
 
 
 
-
-
-# # print(re.findall(regex,audio[0]))
-# for link in links:
-#     print(link)
-print(download_links)
+#print(download_links)
