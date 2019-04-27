@@ -39,7 +39,7 @@ def get_download_link(chapter):
                 if "$(\"#jquery_jplayer_1\").jPlayer({" in script:
                     audio.append(script)
                     for code in audio:
-                        download_links.append(re.findall(regex,code))
+                    download_links.append(re.findall(regex,code))
         print(download_links[0])
         return "https://" + download_links[0][0]
 

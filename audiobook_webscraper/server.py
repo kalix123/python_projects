@@ -2,6 +2,8 @@ from flask import Markup,request, Flask, render_template
 from audiobook_webscraper import *
 app = Flask(__name__)
 
+app.static_folder = 'static'
+
 
 @app.route('/chapter/', methods=['POST'])
 def my_form_post():
@@ -21,3 +23,6 @@ def AudioBooks():
 def get_AudioBooks(number=None):
     link = get_download_link(chapter=number)
     return render_template('audiobook.html', link=link, chapter=number)
+
+if __name__ == "__main__":
+    app.run(debug=True)
