@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - Zee</title>
+    {% endblock %}
+</head>
+<body>
+  <header>
+  <div class="container">
+    <strong><nav>
+  <ul class="menu">
+ {% for item in navigation %}
+     <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+ {% endfor %}
+ </ul>
+</nav></strong>
+</div>
+</header>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+
+    <div id="footer">
+        {% block footer %}
+        <a href="https://kalixzee.com">Kalix Zee</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>

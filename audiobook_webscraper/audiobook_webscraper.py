@@ -11,7 +11,7 @@ def get_download_link(chapter):
     links = []
     regex = r"openload\.co/+.*?mime=true"
     audio = []
-    download_links = []
+    download_links = ''
     for frame in soup.findAll("iframe"):
         data.append(list(frame.attrs.values()))
 
@@ -31,7 +31,7 @@ def get_download_link(chapter):
                             download_links.append(re.findall(regex,code))
         return download_links
     else:
-        page = requests.get(links[int(chapter)])
+        page = requests.get(links[int(chapter-1)])
         html = page.content
         soup = BeautifulSoup(html, 'html.parser')
         for y in soup.findAll('script'):
@@ -39,9 +39,9 @@ def get_download_link(chapter):
                 if "$(\"#jquery_jplayer_1\").jPlayer({" in script:
                     audio.append(script)
                     for code in audio:
-                    download_links.append(re.findall(regex,code))
+                        download_links = re.findall(regex,code)
         print(download_links[0])
-        return "https://" + download_links[0][0]
+        return "https://" + download_links[0]
 
 
 #print(download_links)

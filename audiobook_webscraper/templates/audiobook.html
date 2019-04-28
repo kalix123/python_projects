@@ -1,33 +1,17 @@
-<html>
-  <head>
-    <meta charset="utf-8">
+{% extends "default_layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>Harry Potter 7</h1>
+<form method="POST">
+  <input name="chapter">
+  <input type="submit">
+</form>
+{% if link %}
+  <h1><a href={{ link }} target="_blank">Chapter {{ chapter }}:</a></h1>
+  <audio controls src={{ link }}>
+  </audio>
+{% else %}
+  <h1>Not specified</h1>
+{% endif %}
 
-    <title>Flask app</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-   </head>
-  <body>
-    <header>
-      <div class="container">
-        <strong><nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('AudioBooks') }}">AudioBooks</a></li>
-          </ul>
-        </nav></strong>
-      </div>
-    </header>
-      <h1>Harry Potter 7</h1>
-      <form method="POST">
-        <input name="chapter">
-        <input type="submit">
-    </form>
-      {% if link %}
-        <h1><a href={{ link }} target="_blank">Chapter {{ chapter }}:</a></h1>
-        <audio controls src={{ link }}>
-        </audio>
-      {% else %}
-        <h1>Not specified</h1>
-      {% endif %}
-  </body>
-</html>
+{% endblock %}

@@ -1,21 +1,6 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Flask app</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <strong><nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('AudioBooks') }}">AudioBooks</a></li>
-          </ul>
-        </nav></strong>
-      </div>
-    </header>
-
-
-  </body>
-</html>
+{% extends "default_layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<p>Welcome to this completly random Flask website that i'm working on.<p>
+<p>If you would like to contribute you can send in a pull request on <a href="https://github.com/kalix123/python_projects">Github</a></p>
+{% endblock %}
