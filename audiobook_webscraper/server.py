@@ -1,13 +1,10 @@
 import os
 from flask import Markup,request, Flask, render_template
-# from flask import flash, redirect,request, session, abort
 
 from audiobook_webscraper import *
 
 app = Flask(__name__)
-
 app.static_folder = 'static'
-
 nav=[{'caption': 'Home','href': '/'}, {'caption': 'Harry Potter', 'href': '/hpotter'}]
 
 @app.route('/')
@@ -15,26 +12,32 @@ def home():
     return render_template('home.html', navigation=nav)
 
 
+
 @app.route('/hpotter/', methods=['POST'])
 def my_form_post():
     text = request.form['chapter']
-    print("text input: " + str(text))
+    book = request.form['book']
+    print("chapter input: " + str(text) + '. book: ' + str(book))
     try:
         processed_text = int(text)
     except ValueError:
         print("The value entered was incorrect. Setting the chapter to 1")
         processed_text = int(1)
-    return get_audioBook_chapter(number=processed_text)
+
+    return get_audioBook_chapter(book_number=int(book), chapter=processed_text)
 
 
 @app.route('/hpotter/')
 def audiobooks():
-    return render_template('audiobook.html', navigation=nav)
+    # request.form['chapter'] = 2
+    return render_template('audiobook.html', navigation=nav,framework=book_number)
 
-@app.route('/hpotter/<number>')
-def get_audioBook_chapter(number=None):
-    link = get_download_link(chapter=number)
-    return render_template('audiobook.html', link=link, chapter=number, navigation=nav)
+
+@app.route('/hpotter/<book_number>/<chapter>')
+def get_audioBook_chapter(book_number=None, chapter=None):
+    link = get_download_link(chapter=chapter, book_choice=book_number)
+
+    return render_template('audiobook.html', link=link, chapter=chapter, navigation=nav,framework=book_number)
 
 
 if __name__ == "__main__":

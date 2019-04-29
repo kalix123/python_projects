@@ -3,11 +3,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-
 #get download link/s given a chapter or "all"
-def get_download_link(chapter):
+#https://azkabanaudiobook.com/stephen-fry-hp-half-blood-prince-book-6/
+def get_download_link(chapter, book_choice):
+    book_choice = int(book_choice)
+    book_list = open('book_links.txt', 'r').read().splitlines()
     #specify what page all the chapters are listed on
-    page = requests.get('https://azkabanaudiobook.com/stephen-fry-hp-sorcerers-stone-book-1/')
+    page = requests.get(book_list[int(book_choice-1)])
     #remove the headers
     html = page.content
     soup = BeautifulSoup(html, 'html.parser')
@@ -55,13 +57,14 @@ def get_download_link(chapter):
                     audio.append(script)
                     #itterate through the audio list
                     for code in audio:
+                        search_object = str(code)
                         #use regex to find anythin that has openload.co/stream, and ends in ?mime=true
-                        download_links = re.findall(regex,code)
+                        download_links = re.findall(regex,search_object)
         #print the download link for given chapter
         print(download_links[0])
         #return a link to it
         return "https://" + download_links[0]
-        
+
 #uncomment last two lines if you would like to use the webscraper seperate from the flask website
-#chapter = int(input("What chapter? "))
-#get_download_link(chapter)
+# chapter = int(input("What chapter? "))
+# get_download_link(chapter, 6)

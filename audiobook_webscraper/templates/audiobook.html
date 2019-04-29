@@ -3,6 +3,15 @@
 {% block content %}
 <h1>Harry Potter 7</h1>
 <form method="POST">
+  <select name="book">
+    <option value=1 {% if framework==1 %} selected="selected"{% endif %}>Book 1: Harry Potter and the Sorcerer's Stone</option>
+    <option value=2 {% if framework==2 %} selected="selected"{% endif %}>Book 2: Harry Potter and the Chamber of Secrets</option>
+    <option value=3 {% if framework==3 %} selected="selected"{% endif %}>Book 3: Harry Potter and the Prisoner of Azkaban</option>
+    <option value=4 {% if framework==4 %} selected="selected"{% endif %}>Book 4: Harry Potter and the Goblet of Fire</option>
+    <option value=5 {% if framework==5 %} selected="selected"{% endif %}>Book 5: Harry Potter and the Order of the Phoenix</option>
+    <option value=6 {% if framework==6 %} selected="selected"{% endif %}>Book 6: Harry Potter and the Half-Blood Prince</option>
+    <option value=7 {% if framework==7 %} selected="selected"{% endif %}>Book 7: Harry Potter and the Deathly Hallows</option>
+  </select>
   <input name="chapter">
   <input type="submit">
 </form>
